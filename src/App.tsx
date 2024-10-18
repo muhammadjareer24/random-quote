@@ -1,62 +1,62 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import './index.css';
-import QuoteDisplay from './components/QuoteDisplay';
-import QuoteControls from './components/QuoteControls';
-import { Quote } from './types';
-import useQuotes from './hooks/useQuotes';
-import { getRandomItem } from './utils/getRandomItem';
+import { useEffect, useState } from 'react'
+import './App.css'
+import './index.css'
+import QuoteDisplay from './components/QuoteDisplay'
+import QuoteControls from './components/QuoteControls'
+import { Quote } from './types'
+import useQuotes from './hooks/useQuotes'
+import { getRandomItem } from './utils/getRandomItem'
 
 function App() {
-  const { quotes, loading, error } = useQuotes();
+  const { quotes, loading, error } = useQuotes()
 
-  const [currentQuote, setCurrentQuote] = useState<string>('');
-  const [currentAuthor, setCurrentAuthor] = useState<string>('');
+  const [currentQuote, setCurrentQuote] = useState<string>('')
+  const [currentAuthor, setCurrentAuthor] = useState<string>('')
 
-  const [animationKey, setAnimationKey] = useState<number>(0);
+  const [animationKey, setAnimationKey] = useState<number>(0)
 
   const displayRandomQuote = (quotesArray: Quote[]) => {
-    const randomQuote = getRandomItem(quotesArray);
+    const randomQuote = getRandomItem(quotesArray)
 
     if (randomQuote) {
-      setCurrentQuote(randomQuote.quote);
-      setCurrentAuthor(randomQuote.author);
-      setAnimationKey((prevKey) => prevKey + 1);
+      setCurrentQuote(randomQuote.quote)
+      setCurrentAuthor(randomQuote.author)
+      setAnimationKey((prevKey) => prevKey + 1)
     }
-  };
+  }
 
   useEffect(() => {
     if (quotes.length > 0) {
-      displayRandomQuote(quotes);
+      displayRandomQuote(quotes)
     }
-  }, [quotes]);
+  }, [quotes])
 
   const handleNewQuote = () => {
-    displayRandomQuote(quotes);
-  };
+    displayRandomQuote(quotes)
+  }
 
   const copyToClipboard = () => {
-    const copyText = `Quote: ${currentQuote}\nAuthor:  ${currentAuthor}`;
+    const copyText = `Quote: ${currentQuote}\nAuthor:  ${currentAuthor}`
 
     navigator.clipboard
       .writeText(copyText)
       .then(() => alert('Quote has been copied'))
-      .catch(() => alert('Failed to copy quote'));
-  };
+      .catch(() => alert('Failed to copy quote'))
+  }
 
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="loader ease-linear rounded-full border-4 border-t-4 border-blue-500 h-12 w-12 animate-spin-slow"></div>
       </div>
-    );
+    )
   }
   if (error) {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="text-red-500 text-lg">{error}</div>
       </div>
-    );
+    )
   }
 
   return (
@@ -85,7 +85,7 @@ function App() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
