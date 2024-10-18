@@ -1,3 +1,5 @@
+const { transform } = require('typescript');
+
 module.exports = {
   theme: {
     fontFamily: {
@@ -11,6 +13,18 @@ module.exports = {
     animation: {
       'spin-slow': 'spin 3s linear infinite',
       'spin-fast': 'spin 500ms linear infinite',
+    },
+    screens: {
+      xs: '400px',
+    },
+    keyframes: {
+      'fade-in': {
+        '0%': { opacity: '0', transform: 'translateY(10px)' },
+        '100%': { opacity: '1', transform: 'translateY(0)' },
+      },
+    },
+    animation: {
+      'fade-in': 'fade-in 0.5s ease-in-out',
     },
   },
   content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],

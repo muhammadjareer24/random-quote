@@ -13,12 +13,15 @@ function App() {
   const [currentQuote, setCurrentQuote] = useState<string>('');
   const [currentAuthor, setCurrentAuthor] = useState<string>('');
 
+  const [animationKey, setAnimationKey] = useState<number>(0);
+
   const displayRandomQuote = (quotesArray: Quote[]) => {
     const randomQuote = getRandomItem(quotesArray);
 
     if (randomQuote) {
       setCurrentQuote(randomQuote.quote);
       setCurrentAuthor(randomQuote.author);
+      setAnimationKey((prevKey) => prevKey + 1);
     }
   };
 
@@ -58,14 +61,15 @@ function App() {
 
   return (
     <>
-      <div className="bg-gradient-custom font-k2d flex justify-center items-center h-screen m-0 overflow-hidden">
-        <div id="wrapper" className="text-center">
-          <h1 id="title" className="title text-2xl md:text-2xl font-bold pb-3">
+      <div className="bg-gradient-custom font-k2d flex justify-center items-center min-h-screen m-0 overflow-hidden p-5 sm:p-10">
+        <div id="wrapper" className="text-center w-full max-w-[600px]">
+          <h1 id="title" className="title text-3xl md:text-4xl font-bold pb-10">
             Random Quote App
           </h1>
           <div
             id="quote-box"
-            className="w-full max-w-md mx-5 p-5 font-semibold text-lg bg-white text-center rounded-lg shadow-lg"
+            key={animationKey}
+            className=" mx-5 p-5 font-semibold text-lg bg-white text-center rounded-lg shadow-lg space-y-4 animate-fade-in"
           >
             {/* Quote Display */}
 
