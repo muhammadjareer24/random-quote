@@ -1,4 +1,4 @@
-import { Quote } from '../types';
+import { Quote } from '../types'
 
 const QuoteDisplay: React.FC<Quote> = ({ quote, author }) => {
   return (
@@ -14,7 +14,7 @@ const QuoteDisplay: React.FC<Quote> = ({ quote, author }) => {
         <cite className="font-k2d text-xl text-gray-600 mt-4">{author}</cite>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default QuoteDisplay;
+export default QuoteDisplay
